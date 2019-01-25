@@ -1,0 +1,15 @@
+syntax: glob
+
+# Temp files
+*~
+
+# Output files
+**/bin/*
+**/obj/*
+Setups/*
+
+# Visual studio files
+*.suo
+
+# VS code files
+*/.vs/*

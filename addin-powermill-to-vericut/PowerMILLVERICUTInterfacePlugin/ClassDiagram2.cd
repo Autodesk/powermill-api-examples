@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PowerMILLVERICUTInterfacePlugin.ExportData" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQEAARBQAAAAAACAAAAAAAAAEQAABBAAAAABAAA=</HashCode>
+      <FileName>ExportData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.Icons" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAABkAAAAQAAAAAAAAAAAAAAAIQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.InstallationUtils" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAICAAAAAEAAAAQAABgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Installer\InstallationUtils.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.PowerMILLVERICUTInterfacePluginInstaller" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Installer\InstallerActions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.PluginSettings" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAQBAAAgAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>PluginSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.PowerMILLPlugin" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADABAAgAAEgCABgAAAAAAAAgAgEAAAAAAgAAAAgAAA=</HashCode>
+      <FileName>PowerMILLPlugin.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.WorkOffset" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAEAAAAASAAAAAAAgA=</HashCode>
+      <FileName>ProjectData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.SetupInfo" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEQAAIMAAAhABADQIABARRAIAMAEAAAAAEJACABIA=</HashCode>
+      <FileName>ProjectData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.ProjectData" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAKAgAAAAAAAAAAACAAQAEAAAAABAACAAAACAIAAAAA=</HashCode>
+      <FileName>ProjectData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.SetupFormData" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SetupFormData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.VericutMachineReader" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEACAAAAAAAAAAAAAACAAAAgAAAAAAAAAgAAAA=</HashCode>
+      <FileName>VericutMachineReader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.WriteTools" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAIAgIACQIAWCAAAIEQAgIAAAAQMAAABAEAQAAAAgAA=</HashCode>
+      <FileName>WriteTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.Forms.VericutPaneWPF" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>cSFoY4jShUBJQluEIJIEDgVTAwAxiWEMyENVFQIgYkM=</HashCode>
+      <FileName>Forms\VericutPaneWPF.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLVERICUTInterfacePlugin.Properties.Resources" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAGUBDAQAiIFEDQUADmIACAQAEEEYAIBoEAOAACIg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

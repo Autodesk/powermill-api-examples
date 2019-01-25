@@ -1,0 +1,472 @@
+﻿<UserControl
+    x:Class="PowerMILLVERICUTInterfacePlugin.Forms.VericutPaneWPF"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:t="clr-namespace:Delcam.Plugins.Localisation;assembly=PluginFramework" Loaded="UserControl_Loaded" mc:Ignorable="d" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    Height="780" Width="300" VerticalContentAlignment="Top" VerticalAlignment="Top">
+
+    <Grid Background="White" MinWidth="300" Width="Auto" Name="gridMain" Height="780">
+
+        <!-- backgroud gradiant rectangle -->
+        <!-- http://msdn.microsoft.com/en-us/library/aa970904.aspx -->
+        <Rectangle Margin="0,-6,0,6" ClipToBounds="True">
+            <Rectangle.Fill>
+                <LinearGradientBrush>
+                    <GradientStop Color="#7AFFFFFF" Offset="0.0" />
+                    <GradientStop Color="#0C6B6BA3" Offset="0.5" />
+                    <GradientStop Color="#5E4848EB" Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!--Label Content="Units: ??" Margin="2,0,0,33" Name="lUnits" Height="26" VerticalAlignment="Bottom" /-->
+        <Button Content="Save Settings" Height="22" Name="btnSaveSettings" Width="139" HorizontalAlignment="Left" Margin="6,0,0,13" VerticalAlignment="Bottom" Click="btnSaveSettings_Click" FontWeight="SemiBold" />
+        <Button Content="Export" Height="22" Name="ButExport" Width="139" HorizontalAlignment="Right" Margin="0,0,6,13" VerticalAlignment="Bottom" Click="butStart_Click" FontWeight="SemiBold" />
+
+        <TabControl HorizontalAlignment="Stretch" Margin="6,6,6,55" Name="tabControl1" VerticalAlignment="Stretch">
+            <TabItem Header="Project options" Name="tabProjectOptions">
+                <Grid Margin="0,0,0,0" VerticalAlignment="Stretch">
+                    <Label Content="Output directory:" Height="28" HorizontalAlignment="Left" Margin="6,6,0,0" Name="lOutputDir" VerticalAlignment="Top" />
+                    <TextBox Height="23" HorizontalAlignment="Stretch" Margin="160,6,40,0" Name="tOutputDir" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <Button Height="23" Width="23" HorizontalAlignment="Right" Margin="0,6,10,0" Name="bBrowseOutputDir" VerticalAlignment="Top" Click="bBrowseOutputDir_Click" Grid.Column="1" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/file_open.png" />
+                        </StackPanel>
+                    </Button>
+                    <Label Content="VERICUT project template:" Height="28" HorizontalAlignment="Left" Margin="6,32,0,0" Name="lProjTemplate" VerticalAlignment="Top" />
+                    <TextBox Height="23" HorizontalAlignment="Stretch" Margin="160,32,40,0" Name="tProjTemplate" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="tProjTemplate_TextChanged" />
+                    <Button Height="23" Width="23" HorizontalAlignment="Right" Margin="0,32,10,0" Name="bBrowseProjTemplate" VerticalAlignment="Top" Grid.Column="1" Click="bBrowseProjTemplate_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/file_open.png"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Label Content="Number of VERICUT setups:" Height="28" HorizontalAlignment="Left" Margin="6,58,0,0" Name="lNumSetups" VerticalAlignment="Top" />
+                    <TextBox Height="23" HorizontalAlignment="Stretch" Margin="160,58,40,0" Name="tNumSetups" VerticalAlignment="Top" Grid.ColumnSpan="2" TextChanged="tNumSetups_TextChanged" RenderTransformOrigin="0.501,0.5" />
+
+                    <GroupBox Header="VERICUT setup settings:" HorizontalAlignment="Stretch" Margin="3,84,0,0" VerticalAlignment="Stretch" >
+                        <Grid HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch">
+                            <Label Name="lSetup" Content="Setup:" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                            <ComboBox Name="cbSetups"  HorizontalAlignment="Stretch" Margin="151,0,34,0" VerticalAlignment="Top" SelectionChanged="cbSetup_SelectionChanged" RenderTransformOrigin="0.503,0.5"/>
+
+                            <Label Name="lSetupName" Content="Name:" HorizontalAlignment="Left" Margin="1,26,0,0" VerticalAlignment="Top"/>
+                            <TextBox Name="tSetupName" HorizontalAlignment="Stretch" Height="23" Margin="151,26,34,0" Text="" VerticalAlignment="Top"/>
+
+                            <Label Name="lSetupTemplate" Content="VERICUT setup template&#xD;&#xA;(leave empty to use &#xD;&#xA;Project template):" HorizontalAlignment="Left" Margin="0,52,0,0" VerticalAlignment="Top"/>
+                            <TextBox Name="tSetupTemplate" HorizontalAlignment="Stretch" Height="23" Margin="151,70,34,0" Text="" VerticalAlignment="Top" TextChanged="tSetupTemplate_TextChanged"/>
+                            <Button Height="23" Width="23"  HorizontalAlignment="Right" Margin="0,70,4.4,0" Name="bBrowseSetupTemplate" VerticalAlignment="Top" Click="bBrowseSetupTemplate_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../Images/file_open.png"/>
+                                </StackPanel>
+                            </Button>
+
+                            <StackPanel Margin="0,106,0,0">
+                                <Expander Name="eNCProgs" Header="NC programs" IsExpanded="False" Margin="0,5,0,0" VerticalAlignment="Stretch" BorderBrush="#FF2A1616" Background="#FFEEEDF6" Grid.Row="1" 
+                                          Expanded="ExpendNCProgExpander">
+                                    <Grid HorizontalAlignment="Stretch" Margin="0,8,0,0" VerticalAlignment="Stretch" Background="#FFFAFAFA" Height="200">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="121*"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <RadioButton Name="rExportNC" Content="Export NC programs" HorizontalAlignment="Left" Margin="3,2,0,0" Height="24" VerticalAlignment="Top" Checked="rExportNC_Checked"/>
+                                        <RadioButton Name="rUseNC" Content="Select NC program files" HorizontalAlignment="Left" Margin="3,22,0,0" Height="24" VerticalAlignment="Top" Checked="rUseNC_Checked"/>
+
+                                        <Grid Name="gridSelectNCs" HorizontalAlignment="Stretch" Margin="24,44,10,0" VerticalAlignment="Top" Height="150" Visibility="Visible">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="150" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Name="listNCProgs" HorizontalAlignment="Stretch" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" SelectionMode="Multiple" />
+                                            <Button Grid.Column="1" Content=">>" Name="bNCAllRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="5,29,4.4,0" VerticalAlignment="Top" Width="21" Height="21" Click="bNCAllRight_Click" FontWeight="SemiBold"/>
+                                            <Button Grid.Column="1" Content=">" Name="bNCRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="5,52,4.4,0" VerticalAlignment="Top" Width="21" Height="21" Click="bNCRight_Click" FontWeight="SemiBold"/>
+                                            <Button Grid.Column="1" Content="&lt;" Name="bNCLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="5,75,4.4,0" VerticalAlignment="Top" Width="21" Height="21" Click="bNCLeft_Click" FontWeight="SemiBold"/>
+                                            <Button Grid.Column="1" Content="&lt;&lt;" Name="bNCAllLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="5,98,4.4,0" Width="21" Height="21" VerticalAlignment="Top" Click="bNCAllLeft_Click" FontStyle="Italic" FontWeight="SemiBold"/>
+                                            <ListBox Grid.Column="1" Name="listNCProgsSelected" HorizontalAlignment="Stretch" Height="150" Margin="30,0,0.4,0" VerticalAlignment="Top" Grid.ColumnSpan="2" SelectionMode="Multiple"/>
+                                        </Grid>
+
+                                        <Grid Name="gridBrowseNCs" HorizontalAlignment="Stretch" Margin="24,44,10,0" VerticalAlignment="Top" Height="150" Visibility="Hidden">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="58" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Grid.Row="0" Name="listNCProgsBrowserSelected" HorizontalAlignment="Stretch" Height="55" Margin="0,0,0,0" VerticalAlignment="Top" SelectionMode="Multiple" />
+                                            <Button Grid.Column="1" Grid.Row="0" Name="bNCBrowse" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Height="23" Width="23" Click="bNCBrowse_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/file_open.png"/>
+                                                </StackPanel>
+                                            </Button>
+                                            <Button Grid.Column="1" Grid.Row="0" Name="bNCDelete" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="bNCDelete_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/delete.png"/>
+                                                </StackPanel>
+                                            </Button>
+
+                                            <Label  Grid.Row="1" Grid.ColumnSpan="2" Name="lModelWP" Content="Select Model workplane:" Margin="-5,0,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Stretch"></Label>
+                                            <ComboBox  Grid.Row="1" Grid.ColumnSpan="2" Name="cbModelWP" Margin="17,25,10,0" Height="22" VerticalAlignment="Top"/>
+                                            <Label  Grid.Row="1" Grid.ColumnSpan="2" Name="lNCWP" Content="Select NC program workplane:" Margin="-5,48.4,0.4,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Stretch"></Label>
+                                            <ComboBox  Grid.Row="1" Grid.ColumnSpan="2" Name="cbNCWP" Margin="17,73.4,10.4,-5" Height="22" VerticalAlignment="Top"/>
+                                        </Grid>
+
+                                    </Grid>
+                                </Expander>
+
+                                <Expander Name="eWorkOffsets" Header="Work offsets" IsExpanded="False" Margin="0,5,0,0" VerticalAlignment="Stretch" BorderBrush="#FF2A1616" Background="#FFEEEDF6" Grid.Row="1" 
+                                          Expanded="ExpendWorkOffsetsExpander">
+                                    <Grid HorizontalAlignment="Stretch" Margin="0,8,0,0" VerticalAlignment="Stretch" Background="#FFFAFAFA">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="121*"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <DataGrid Name="dgOffsets" HorizontalAlignment="Stretch" Margin="3,2,3,0" VerticalAlignment="Top" Height="115" 
+                                                  Grid.RowSpan="2" HorizontalScrollBarVisibility="Visible" SelectionChanged="DataGrid_SelectionChanged"
+                                                  ItemsSource="{Binding WorkOffset}">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Path=name}" ClipboardContentBinding="{x:Null}" Header="Name" IsReadOnly="True">
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Path=register}" ClipboardContentBinding="{x:Null}" Header="Register" IsReadOnly="True">
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Path=subsystem}" ClipboardContentBinding="{x:Null}" Header="Subsystem" IsReadOnly="True">
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Path=from_component}" ClipboardContentBinding="{x:Null}" Header="'From' component" IsReadOnly="True">
+                                                </DataGridTextColumn>
+                                                <DataGridTextColumn Binding="{Binding Path=to_ucs}" ClipboardContentBinding="{x:Null}" Header="'To' workplane" IsReadOnly="True">
+                                                </DataGridTextColumn>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+
+                                        <Label Name="lProgName" Content="Name:" HorizontalAlignment="Stretch" Margin="3,121,130,0" Grid.Row="1" VerticalAlignment="Top"/>
+                                        <ComboBox Name="cProgName" HorizontalAlignment="Stretch" Height="22" Margin="148,120,32,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+                                        <Label Name="lRegister" Content="Register:" HorizontalAlignment="Stretch" Margin="3,145,130,0" Grid.Row="1" VerticalAlignment="Top"/>
+                                        <TextBox Name="tRegister" HorizontalAlignment="Stretch" Height="22" Margin="148,144,32,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+                                        <Label Name="lSubsystem" Content="Subsystem:" HorizontalAlignment="Stretch" Margin="3,169,130,0" Grid.Row="1" VerticalAlignment="Top"/>
+                                        <ComboBox Name="cSubsystem" HorizontalAlignment="Stretch" Height="22" Margin="148,168,32,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+                                        <Label Name="lFromComp" Content="'From' component:" HorizontalAlignment="Stretch" Margin="3,193,130,0" Grid.Row="1" VerticalAlignment="Top"/>
+                                        <ComboBox Name="cFromComp" HorizontalAlignment="Stretch" Height="22" Margin="148,192,32,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+                                        <Label Name="lToUCS" Content="'To' CSYS origin:" HorizontalAlignment="Stretch" Margin="3,217,130,0" Grid.Row="1" VerticalAlignment="Top"/>
+                                        <ComboBox Name="cToUCS" HorizontalAlignment="Stretch" Height="22" Margin="148,216,32,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+                                        <Grid Name="gridOffsetButtons" HorizontalAlignment="Stretch" Margin="24,245,10,3" VerticalAlignment="Top" Height="23" Visibility="Visible" Grid.Row="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Name="bAddWorkOffset" Content="Add" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Top" Height="23" Click="bAddWorkOffset_Click"/>
+                                            <Button Name="bModifyWorkOffset" Content="Modify" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" Height="23" Click="bModifyWorkOffset_Click"/>
+                                            <Button Name="bDeleteWorkOffset" Content="Delete" HorizontalAlignment="Stretch" Margin="10,0,10,0" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top" Height="23" Click="bDeleteWorkOffset_Click"/>
+                                        </Grid>
+                                    </Grid>
+                                </Expander>
+
+                                <Expander Name="eUCS" Header="Workplanes" IsExpanded="False" Margin="0,5,0,0" VerticalAlignment="Stretch" BorderBrush="#FF2A1616" Background="#FFEEEDF6" Grid.Row="2" Expanded="ExpendWorkplanesExpander">
+                                    <Grid HorizontalAlignment="Stretch" Margin="0,8,0,0" VerticalAlignment="Stretch" Background="#FFFAFAFA">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="131*"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <RadioButton Name="rSelectWPs" Content="Select workplanes to export" HorizontalAlignment="Left" Margin="3,2,10,0" Height="24" VerticalAlignment="Top"/>
+                                        <Grid Name="gridSelectWorkplanes" HorizontalAlignment="Stretch" Margin="24,22,10,0" VerticalAlignment="Top" Height="95" Visibility="Visible">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Name="listWorkplanes" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" SelectionMode="Multiple" />
+                                            <Button Grid.Column="1" Content=">>" Name="bWPAllRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="21" Height="21" Click="bWPAllRight_Click" FontWeight="SemiBold"/>
+                                            <Button Grid.Column="1" Content=">" Name="bWPRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Width="21" Height="21" Click="bWPRight_Click" FontWeight="SemiBold"/>
+                                            <Button Grid.Column="1" Content="&lt;" Name="bWPLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" Width="21" Height="21" Click="bWPLeft_Click" FontWeight="SemiBold"/>
+                                            <Button Grid.Column="1" Content="&lt;&lt;" Name="bWPAllLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,69,0,0" Width="21" Height="21" VerticalAlignment="Top" Click="bWPAllLeft_Click" FontStyle="Italic" FontWeight="SemiBold"/>
+                                            <ListBox Grid.Column="2" Name="listWorkplanesSelected" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                                        </Grid>
+
+                                        <RadioButton Name="rSelectAlignedWPs" HorizontalAlignment="Left" Margin="3,118,10,0" VerticalAlignment="Top" Checked="rSelectAlignedWPs_Checked">
+                                            <TextBlock TextWrapping="WrapWithOverflow">
+                                                Export workplanes aligned with Attach workplane
+                                            </TextBlock>
+                                        </RadioButton>
+                                        <Label Name="lAttachWP" Content="Select workplane to use as an Attach point" Margin="3,148,10,0" Height="28" VerticalAlignment="Top"></Label>
+                                        <ComboBox Name="cbAttachWP" Margin="25,171,10,0" Height="22" VerticalAlignment="Top" SelectionChanged="cbAttachWP_SelectionChanged"/>
+                                        <Label Name="lAttachTo" Content="Select Attach component" Margin="3,190,10,1.6" Height="28" VerticalAlignment="Top"></Label>
+                                        <ComboBox Name="cbAttachWPTo" Margin="25,213,10,5" Height="22" VerticalAlignment="Top"/>
+                                    </Grid>
+                                </Expander>
+
+                                <Expander Name="eBlock" Header="Block" Margin="0,5,0,0" IsExpanded="False" VerticalAlignment="Stretch" BorderBrush="#FF2A1616" Background="#FFEEEDF6" Grid.Row="2"  Expanded="ExpendBlockExpander">
+                                    <Grid HorizontalAlignment="Stretch" Margin="0,8,0,0" VerticalAlignment="Stretch" Background="#FFFAFAFA">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <RadioButton Name="rBlockToolpath" Content="Export toolpath block" HorizontalAlignment="Left" Margin="3,2,0,0" Height="24" VerticalAlignment="Top" Checked="rBlockExport_Checked"/>
+                                        <RadioButton Name="rBlockStockModel" Content="Export stock model" HorizontalAlignment="Left" Margin="3,22,0,0" Height="24" VerticalAlignment="Top" Checked="rBlockStockModel_Checked"/>
+                                        <RadioButton Name="rBlockStockFile" Content="Select STL file" HorizontalAlignment="Left" Margin="3,42,0,0" Height="28" VerticalAlignment="Top" Checked="rBlockStockFile_Checked"/>
+
+                                        <Grid Name="gridSelectToolpath" HorizontalAlignment="Stretch" Margin="24,62,10,0" VerticalAlignment="Top" Height="95" Visibility="Visible">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Name="listBlocks" DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="90" SelectionMode="Single" Margin="0,0,0,0" />
+                                            <Button Grid.Column="1" Content=">" Name="ButBlockAdd" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="5,23,4.4,46.4" Width="21" FontWeight="SemiBold" Click="ButBlockAdd_Click"/>
+                                            <Button Grid.Column="1" Content="&lt;" Name="ButBlockRemove" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="5,46,4.4,23.4" Width="21" FontWeight="SemiBold" Click="ButBlockRemove_Click"/>
+                                            <ListBox Name="listBlocksUsed" DockPanel.Dock="Right" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="90" Foreground="Black" Background="#0D00FF00" SelectionMode="Single" Margin="0,0,0,0" />
+                                        </Grid>
+
+                                        <Grid Name="gridBrowseBlocks" HorizontalAlignment="Stretch" Margin="24,62,10,0" VerticalAlignment="Top" Height="95" Visibility="Hidden">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Name="TxtBlockSTL" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" />
+                                            <Button Grid.Column="1" Name="ButBlockSTL" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="23" Height="23" FontWeight="SemiBold" Click="ButBlockSTL_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/file_open.png"/>
+                                                </StackPanel>
+                                            </Button>
+                                            <Button Grid.Column="1" Name="ButBlockRemoveSTL" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Width="23" Height="23" FontWeight="SemiBold" Click="ButBlockRemoveSTL_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/delete.png"/>
+                                                </StackPanel>
+                                            </Button>
+
+                                        </Grid>
+
+                                        <Grid Name="gridSelectStockModels" HorizontalAlignment="Stretch" Margin="24,62,10,0" VerticalAlignment="Top" Height="95" Visibility="Hidden">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Name="listStockModels" DockPanel.Dock="Left" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="90" SelectionMode="Single" Margin="0,0,0,0" />
+                                            <Button Grid.Column="1" Content=">" Name="ButStockModelsAdd" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="5,0,4.4,46.4" Width="21" FontWeight="SemiBold" Click="ButStockModelsAdd_Click" Height="21" VerticalAlignment="Bottom"/>
+                                            <Button Grid.Column="1" Content="&lt;" Name="ButStockModelsRemove" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="ButStockModelsRemove_Click"/>
+                                            <ListBox Name="listStockModelsUsed" DockPanel.Dock="Right" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="90" Foreground="Black" Background="#0D00FF00" SelectionMode="Single" Margin="0,0,0,0" />
+                                        </Grid>
+
+                                        <Label Name="lAttachStockTo" Content="Select Attach component" HorizontalAlignment="Left" Margin="3,145,0,0" Height="24" VerticalAlignment="Top"/>
+                                        <ComboBox Name="cbAttachStockTo" Margin="25,170,10,0" Height="22" VerticalAlignment="Top"/>
+                                        <CheckBox Name="cBlockTransition" Content="Use Cut stock transition" HorizontalAlignment="Left" Margin="3,200,0,-5.4" Height="24" VerticalAlignment="Top" Click="cBlockTransition_Click"/>
+                                        <Label Name="lCutStockTransitionWP" Content="Select Cut stock transition workplane" HorizontalAlignment="Left" Margin="3,220,0,0" Height="24" VerticalAlignment="Top"/>
+                                        <ComboBox Name="cbCutStockTransitionWP" Margin="25,245,10,3" Height="22" VerticalAlignment="Top"/>
+                                    </Grid>
+                                </Expander>
+
+                                <Expander Name="ePart" Header="Part" Margin="0,5,0,0" IsExpanded="False" VerticalAlignment="Stretch" BorderBrush="#FF2A1616" Background="#FFEEEDF6" Grid.Row="2" Expanded="ExpendPartExpander" >
+                                    <Grid HorizontalAlignment="Stretch" Margin="0,8,0,0" VerticalAlignment="Stretch" Background="#FFFAFAFA">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <RadioButton Name="rPartModels" Content="Select model names to export" HorizontalAlignment="Left" Margin="3,2,0,0" Height="24" VerticalAlignment="Top" Checked="rPartModels_Checked"/>
+                                        <RadioButton Name="rPartSTLs" Content="Select STL files" HorizontalAlignment="Left" Margin="3,22,0,0" Height="24" VerticalAlignment="Top" Checked="rPartSTLs_Checked"/>
+
+                                        <Grid Name="gridSelectParts" HorizontalAlignment="Stretch" Margin="24,42,10,0" VerticalAlignment="Top" Height="95" Visibility="Hidden">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Name="listModels" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" />
+                                            <Button Grid.Column="1" Content=">>" Name="bModelsAllRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bModelsAllRight_Click"/>
+                                            <Button Grid.Column="1" Content=">" Name="bModelsRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bModelsRight_Click"/>
+                                            <Button Grid.Column="1" Content="&lt;" Name="bModelsLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bModelsLeft_Click"/>
+                                            <Button Grid.Column="1" Content="&lt;&lt;" Name="bModelsAllLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,69,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bModelsAllLeft_Click"/>
+                                            <ListBox Grid.Column="2" Name="listModelsSelected" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                                        </Grid>
+
+                                        <Grid Name="gridBrowseParts" HorizontalAlignment="Stretch" Margin="24,42,10,0" VerticalAlignment="Top" Height="95" Visibility="Visible">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Name="listModelsBrowserSelected" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" />
+                                            <Button Grid.Column="1" Name="bModelsBrowse" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="23" Height="23" FontWeight="SemiBold" Click="bModelsBrowse_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/file_open.png"/>
+                                                </StackPanel>
+                                            </Button>
+                                            <Button Grid.Column="1" Name="bModelsDelete" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Width="23" Height="23" FontWeight="SemiBold" Click="bModelsDelete_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/delete.png"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
+
+                                        <Label Name="lAttachModelsTo" Content="Select Attach component" HorizontalAlignment="Left" Margin="3,134,0,0" Height="24" VerticalAlignment="Top"/>
+                                        <ComboBox Name="cbAttachModelsTo" Margin="25,158,10,3" Height="22" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                                    </Grid>
+                                </Expander>
+
+                                <Expander Name="eFixtures" Header="Fixtures" Margin="0,5,0,0" IsExpanded="False" VerticalAlignment="Stretch" BorderBrush="#FF2A1616" Background="#FFEEEDF6" Grid.Row="2"  Expanded="ExpendFixturesExpander">
+                                    <Grid HorizontalAlignment="Stretch" Margin="0,8,0,0" VerticalAlignment="Stretch" Background="#FFFAFAFA">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <RadioButton Name="rFixtureModels" Content="Select model names to export" HorizontalAlignment="Left" Margin="3,2,0,0" Height="24" VerticalAlignment="Top" Checked="rFixtureModels_Checked"/>
+                                        <RadioButton Name="rFixtureSTLs" Content="Select STL files" HorizontalAlignment="Left" Margin="3,22,0,0" Height="24" VerticalAlignment="Top" Checked="rFixtureSTLs_Checked"/>
+
+                                        <Grid Name="gridSelectFixture" HorizontalAlignment="Stretch" Margin="24,42,10,0" VerticalAlignment="Top" Height="95" Visibility="Hidden">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Name="listFixtures" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" SelectionMode="Extended" />
+                                            <Button Grid.Column="1" Content=">>" Name="bFixtureAllRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bFixtureAllRight_Click"/>
+                                            <Button Grid.Column="1" Content=">" Name="bFixtureRight" Foreground="#FF00C800" HorizontalAlignment="Right" Margin="0,23,4.4,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bFixtureRight_Click"/>
+                                            <Button Grid.Column="1" Content="&lt;" Name="bFixtureLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bFixtureLeft_Click"/>
+                                            <Button Grid.Column="1" Content="&lt;&lt;" Name="bFixtureAllLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,69,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bFixtureAllLeft_Click"/>
+                                            <ListBox Grid.Column="2" Name="listFixturesSelected" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" SelectionMode="Extended"/>
+                                        </Grid>
+
+                                        <Grid Name="gridBrowseFixture" HorizontalAlignment="Stretch" Margin="24,42,10,0" VerticalAlignment="Top" Height="95" Visibility="Visible">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Name="listFixtureBrowserSelected" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" SelectionMode="Extended" />
+                                            <Button Grid.Column="1" Name="bFixtureBrowse" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="bFixtureBrowse_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/file_open.png"/>
+                                                </StackPanel>
+                                            </Button>
+                                            <Button Grid.Column="1" Name="bFixtureDelete" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="bFixtureDelete_Click">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Image Source="../Images/delete.png"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
+
+                                        <Label Name="lAttachFixtureTo" Content="Select Attach component" HorizontalAlignment="Left" Margin="3,135,0,0" Height="24" VerticalAlignment="Top"/>
+                                        <ComboBox Name="cbAttachFixtureTo" Margin="25,158,10,3" Height="22" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                                    </Grid>
+                                </Expander>
+
+                                <Expander Name="eTools" Header="Tools" Margin="0,5,0,0" IsExpanded="False" VerticalAlignment="Stretch" BorderBrush="#FF2A1616" Background="#FFEEEDF6" Grid.Row="2" Expanded="ExpendToolsExpander" >
+                                    <Grid HorizontalAlignment="Stretch" Margin="0,8,0,0" VerticalAlignment="Stretch" Background="#FFFAFAFA">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="1*"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <ComboBox Name="cbToolLibrary" HorizontalAlignment="Stretch" Margin="3,2,0,0" Height="22" VerticalAlignment="Top" SelectionChanged="cbToolLibrary_SelectionChanged">
+                                            <ComboBoxItem Content="Create new library"/>
+                                            <ComboBoxItem Content="Use library tools"/>
+                                            <ComboBoxItem Content="Add tools to library"/>
+                                        </ComboBox>
+                                        <RadioButton GroupName="ToolFile" Name="rToolLibFromTemplate" Content="From template" HorizontalAlignment="Left" Margin="23,27,0,0" Height="24" VerticalAlignment="Top" IsEnabled="False"/>
+                                        <RadioButton GroupName="ToolFile" Name="rToolLibFile" Content="Select library file" HorizontalAlignment="Left" Margin="23,47,0,0" Height="24" VerticalAlignment="Top" IsEnabled="False"/>
+                                        <TextBox Name="tToolsFile" Margin="43,66,40,5" Height="22" VerticalAlignment="Top"/>
+                                        <Button Name="bToolsFile" HorizontalAlignment="Right" Margin="0,66,10,4" VerticalAlignment="Top" Width="23" Height="23" Click="bToolsFile_Click">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../Images/file_open.png"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <!--Grid Name="gridSelectTools" HorizontalAlignment="Stretch" Margin="24,132,10,5" VerticalAlignment="Top" Height="95" Visibility="Visible" IsEnabled="False">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="30" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90" />
+                                            </Grid.RowDefinitions>
+                                            <ListBox Grid.Column="0" Name="listTools" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top" />
+                                            <Button Grid.Column="1" Content=">>" Name="bToolsAllRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bToolsAllRight_Click"/>
+                                            <Button Grid.Column="1" Content=">" Name="bToolsRight" Foreground="#FF00C800" HorizontalAlignment="Center" Margin="0,23,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bToolsRight_Click"/>
+                                            <Button Grid.Column="1" Content="&lt;" Name="bToolsLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,46,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bToolsLeft_Click"/>
+                                            <Button Grid.Column="1" Content="&lt;&lt;" Name="bToolsAllLeft" Foreground="#FFC80000" HorizontalAlignment="Center" Margin="0,69,0,0" VerticalAlignment="Top" Width="21" Height="21" FontWeight="SemiBold" Click="bToolsAllLeft_Click"/>
+                                            <ListBox Grid.Column="2" Name="listToolsSelected" HorizontalAlignment="Stretch" Height="90" Margin="0,0,0,0" VerticalAlignment="Top"/>
+                                        </>
+                                        <RadioButton GroupName="ToolExport" Name="rSelectTools" Content="Select tools to export" HorizontalAlignment="Stretch" Margin="3,111,10,0" Height="24" VerticalAlignment="Top" IsEnabled="false"/>
+                                        <RadioButton GroupName="ToolExport" Name="rSelectUsedTools" Content="Export tools associated with NC program(s)" HorizontalAlignment="Left" Margin="3,91,0,0" VerticalAlignment="Top" IsChecked="True" Checked="rSelectUsedTools_Checked" /-->
+
+                                    </Grid>
+                                </Expander>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Plugin options" Name="tabVericutOptions">
+                <Grid Margin="0,0,0,0" VerticalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="9*"/>
+                        <ColumnDefinition Width="38*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="STL file export tolerances:" HorizontalAlignment="Left" Margin="6,6,0,0" Name="lExportTols" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <Label Content="Block:" Height="28" HorizontalAlignment="Left" Margin="26,32,0,0" Name="lStockExportTol" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <TextBox Height="23" HorizontalAlignment="Stretch" Margin="96,32,40,0" Name="tStockExportTol" VerticalAlignment="Top" Grid.Column="1" />
+                    <Label Content="Models:" Height="28" HorizontalAlignment="Left" Margin="26,58,0,0" Name="lModelExportTol" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <TextBox Height="23" HorizontalAlignment="Stretch" Margin="96,58,40,0" Name="tModelExportTol" VerticalAlignment="Top" Grid.Column="1" />
+                    <Label Content="Fixtures:" Height="28" HorizontalAlignment="Left" Margin="26,84,0,0" Name="lFixtureExportTol" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <TextBox Height="23" HorizontalAlignment="Stretch" Margin="96,84,40,0" Name="tFixtureExportTol" VerticalAlignment="Top" Grid.Column="1" />
+                    <Label Content="Tools:" Height="28" HorizontalAlignment="Left" Margin="26,110,0,0" Name="lToolExportTol" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <TextBox Height="23" HorizontalAlignment="Stretch" Margin="96,110,40,0" Name="tToolExportTol" VerticalAlignment="Top" Grid.Column="1" />
+
+                    <Label Content="Identify tools in VERICUT using:" HorizontalAlignment="Left" Margin="6,136,0,0" Name="lTools" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+
+                    <Label Content="VERICUT:" Name="lVericutSettings" HorizontalAlignment="Left" Margin="6,200,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <CheckBox Content="Export project and open in VERICUT" Name="cbOpenVericut" HorizontalAlignment="Left" Margin="30,226,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+
+                    <Label Content="Path:" Height="28" HorizontalAlignment="Left" Margin="26,245,0,0" Name="lVericutPath" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+                    <TextBox Height="23" HorizontalAlignment="Stretch" Margin="22,245,40,0" Name="tVericutPath" VerticalAlignment="Top" Grid.Column="1" />
+                    <Button Height="23" Width="23" HorizontalAlignment="Right" Margin="0,245,10,0" Name="bBrowseVericutPath" VerticalAlignment="Top" Click="bBrowseVericutPath_Click" Grid.Column="1" >
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Images/file_open.png" />
+                        </StackPanel>
+                    </Button>
+                    <RadioButton x:Name="cbToolName" Content="Tool name" HorizontalAlignment="Left" Margin="26,164,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <RadioButton x:Name="cbToolNumber" Content="Tool position in the crib" HorizontalAlignment="Left" Margin="26,184,0,0" VerticalAlignment="Top" IsChecked="True" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </Grid>
+
+
+</UserControl>

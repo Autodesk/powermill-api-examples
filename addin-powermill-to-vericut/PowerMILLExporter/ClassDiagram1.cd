@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PowerMILLExporter.WorkPlaneOrigin" Collapsed="true">
+    <Position X="20.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAgAAAAEAAAAAAAAAUEAAAAAAIAAAAAAA=</HashCode>
+      <FileName>MainModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.MainModule">
+    <Position X="18.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAQAAAAQAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>MainModule.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.PowerMILLAutomation">
+    <Position X="22.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="PowerMILLExporter.PowerMILLAutomation.enumUnit" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PowerMILLAutomation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="PowerMILLExporter.PowerMILLAutomation.enumEntity" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>PowerMILLAutomation.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QwAACAABkAJAAEQAAAAAAAQAAAACAIQEEUEEKIABEAA=</HashCode>
+      <FileName>PowerMILLAutomation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Utilities">
+    <Position X="18.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIACAAAACAAAAAAAQAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Utilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools._2DTool" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Tools\2DTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.ATP5Mill" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAACAAAAAAAAIAAAAQAAAAAAAAABAAAEAA=</HashCode>
+      <FileName>Tools\ATP5Mill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.DrillingTool" Collapsed="true">
+    <Position X="9.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Tools\DrillingTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.MillingTool">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Tools\MillingTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.NCProgramTool" Collapsed="true">
+    <Position X="20.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAUAAAAQAAAAAAAAgAAAAACAAAAA=</HashCode>
+      <FileName>Tools\NCProgramTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.SpecialMill" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAQAAAABACAAAAAAAAAAAAAABAwAAAAAAA=</HashCode>
+      <FileName>Tools\SpecialMill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.TaperSpherical" Collapsed="true">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAQAAAAAAAAABAAAEAA=</HashCode>
+      <FileName>Tools\TaperSpherical.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.TapTool" Collapsed="true">
+    <Position X="16.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAggAAAEAAAAIAAAAAQAAAAAAAAACAgAA=</HashCode>
+      <FileName>Tools\TapTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.Tool" Collapsed="true">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgEAYAAAAACEAADCAACAVCAIAAAEgBAWCBAQAAGIA=</HashCode>
+      <FileName>Tools\Tool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PowerMILLExporter.Tools.TopAndSideMill" Collapsed="true">
+    <Position X="7.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAIgAAAAAAAAAAgAAAIAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Tools\TopAndSideMill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
