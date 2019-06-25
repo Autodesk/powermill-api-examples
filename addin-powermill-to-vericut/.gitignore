@@ -1,0 +1,5 @@
+syntax: glob
+
+PluginFramework.dll
+PluginFramework.pdb
+MR_wrapper.dll
