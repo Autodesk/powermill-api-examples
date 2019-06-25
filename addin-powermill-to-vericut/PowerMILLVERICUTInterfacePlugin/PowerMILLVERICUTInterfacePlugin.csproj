@@ -73,10 +73,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Icons.resx</DependentUpon>
     </Compile>
-    <Compile Include="Installer\InstallationUtils.cs" />
-    <Compile Include="Installer\InstallerActions.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="PluginSettings.cs" />
     <Compile Include="ProjectData.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -108,8 +104,6 @@
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Banner.bmp" />
-    <None Include="App.ico" />
     <None Include="Resources.cd" />
     <Resource Include="Images\file_open.png" />
     <Resource Include="Images\Logo24_1.png">
