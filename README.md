@@ -29,7 +29,7 @@ The plugins will require that you generate `PowerMill.dll`, which contains the i
 
 To generate `PowerMill.dll` follow these instructions:
 
-- Using a standard command window, move to the PowerMILL's executable directory. e.g.
+- Using a command window run as administrator, move to the PowerMill executable directory. e.g.
 ```
 cd "C:\Program Files\Autodesk\PowerMill 2019\sys\exec64"
 ```
@@ -58,18 +58,30 @@ e.g.
 C:\Program Files\Autodesk\PowerMill 2019\file\plugins\framework\PluginFramework40\bin\Release
 ```
 
-## Running the Plugins 
+## Running a Plugin
 To run the plugin within PowerMill, you must COM register it using `regasm.exe`.
 
 ### Registering the COM component
 
-To register the plugin, from the plugins's 'bin' directory:
+To register the plugin, open a command window run as administrator, navigate to the directory containing the plugin DLL (typically in the 'bin' directory), and use:
 
 ```
-C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\regasm.exe BasicPlugin.dll /register /codebase
+C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\regasm.exe <plugin DLL name>.dll /register /codebase
 ```
 
 Note: This will issue a warning about the `/codebase` option being used not in conjunction with a strong named assembly. It is safe to ignore this warning, although giving your assembly a strong name will prevent the warning.
+
+### Making the Plugin Accessible to PowerMill
+
+Find the GUID above the class that implments PowerMILL.IPowerMILLPlugin. Each plugin must use a different GUID.
+
+In a command window run as administrator:
+
+```
+reg.exe ADD "HKCR\CLSID\{AFBB4C14-BD94-4692-98DE-645609C1B033}\Implemented Categories\{311b0135-1826-4a8c-98de-f313289f815e}" /reg:64 /f
+```
+
+Replacing `AFBB4C14-BD94-4692-98DE-645609C1B033` with the GUID of the plugin class.
 
 ### Running the Plugin
 
@@ -80,6 +92,9 @@ After registering your plugin, you will be able to access it from within PowerMi
 - Open the Plugin Manager form, by going to "Options/Manage Installed Plugins"
 - Select your plugin in the list, and select Enable.
 - Your plugin should now have a green status icon, and be enabled.
+
+## Further Documentation
+Additional documentation can be found by navigating to 'file\plugins\documentation' within your PowerMill install directory.
 
 ## Contributions
 In order to clarify the intellectual property license granted with Contributions from any person or entity, Autodesk must have a Contributor License Agreement ("CLA") on file that has been signed by each Contributor to this Open Source Project (the “Project”), indicating agreement to the license terms. This license is for your protection as a Contributor to the Project as well as the protection of Autodesk and the other Project users; it does not change your rights to use your own Contributions for any other purpose. There is no need to fill out the agreement until you actually have a contribution ready. Once you have a contribution you simply fill out and sign the applicable agreement (see the contributor folder in the repository) and send it to us at the address in the agreement.
