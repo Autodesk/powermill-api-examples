@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drilling Automation", "Drilling Automation\Drilling Automation.csproj", "{23106269-E38A-4A25-90D2-8E294244AD39}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DrillingAutomationInstaller", "DrillingAutomationInstaller\DrillingAutomationInstaller.vdproj", "{A18D615A-E76A-43DB-847A-6FBFBA50B031}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23106269-E38A-4A25-90D2-8E294244AD39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23106269-E38A-4A25-90D2-8E294244AD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23106269-E38A-4A25-90D2-8E294244AD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23106269-E38A-4A25-90D2-8E294244AD39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A18D615A-E76A-43DB-847A-6FBFBA50B031}.Debug|Any CPU.ActiveCfg = Debug
+		{A18D615A-E76A-43DB-847A-6FBFBA50B031}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5AD1A13-3786-40B4-A4E7-99260797393A}
+	EndGlobalSection
+EndGlobal

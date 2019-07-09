@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="DrillingAutomation.DrillingAutomationPaneWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DrillingAutomation"
+             mc:Ignorable="d" Height="540.88" Width="324.103"
+             Background="White">
+    <Grid Margin="10,10,10,0" Height="225" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="166*"/>
+            <RowDefinition Height="59*"/>
+        </Grid.RowDefinitions>
+
+        <TabControl HorizontalAlignment="Left" Height="525" Margin="0,-1,-2,-299" VerticalAlignment="Top" Width="306" Grid.RowSpan="2">
+            <TabItem Header="Hole Recognition">
+                <Grid Background="White" Margin="0,0,0,-1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="139*"/>
+                        <ColumnDefinition Width="161*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListBox x:Name="listHoleFeatureSet" Height="102" Margin="6,83,0,0" VerticalAlignment="Top" SelectionMode="Multiple" HorizontalAlignment="Left" Width="124"/>
+                    <ListBox x:Name="listHoleFeatureSetSelected" Height="102" Margin="0,83,7,0" VerticalAlignment="Top" SelectionMode="Multiple" HorizontalAlignment="Right" Width="126" Grid.Column="1"/>
+                    <Button x:Name="AddFeatureSet" Content="" Margin="137,108,139,0" VerticalAlignment="Top" Click="AddFeatureSet_Click" HorizontalAlignment="Center" Width="24" Height="24" Grid.ColumnSpan="2">
+                        <Button.BorderBrush>
+                            <ImageBrush/>
+                        </Button.BorderBrush>
+                        <Button.Foreground>
+                            <ImageBrush ImageSource="Icons/Add_32x32.ico"/>
+                        </Button.Foreground>
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/Add_32x32.ico"/>
+                        </Button.Background>
+                    </Button>
+                    <Button x:Name="RemoveFeatureSet" Content="" Margin="137,137,139,0" VerticalAlignment="Top" Click="RemoveFeatureSet_Click" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="24" Height="24" Grid.ColumnSpan="2">
+                        <Button.Background>
+                            <ImageBrush ImageSource="Icons/Del_32x32.ico"/>
+                        </Button.Background>
+                        <Button.BorderBrush>
+                            <ImageBrush/>
+                        </Button.BorderBrush>
+                        <Button.Foreground>
+                            <ImageBrush ImageSource="Icons/Del_32x32.ico"/>
+                        </Button.Foreground>
+                    </Button>
+                    <Label Content="Select Hole FeatureSets to export:" HorizontalAlignment="Center" Height="33" Margin="44,45,40,0" VerticalAlignment="Top" Width="216" HorizontalContentAlignment="Center" Grid.ColumnSpan="2"/>
+                    <Button x:Name="Generate" Content="Generate" HorizontalAlignment="Left" Height="22" Margin="80,0,0,194" VerticalAlignment="Bottom" Width="71" Click="Generate_Click" Grid.Column="1"/>
+                    <RadioButton x:Name="TagOnly" Content="Tag Only" HorizontalAlignment="Left" Height="19" Margin="10,201,0,0" VerticalAlignment="Top" Width="106" GroupName="ActionType"/>
+                    <RadioButton x:Name="TPOnly" Content="Toolpaths Only" HorizontalAlignment="Left" Height="19" Margin="10,225,0,0" VerticalAlignment="Top" Width="106" GroupName="ActionType"/>
+                    <RadioButton x:Name="TagAndTP" Content="Both" HorizontalAlignment="Left" Height="19" Margin="10,249,0,0" VerticalAlignment="Top" Width="106" IsChecked="True" GroupName="ActionType"/>
+                    <ComboBox x:Name="MachineCell_Drop" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="29" Margin="109,10,0,0" VerticalAlignment="Top" Width="181" RenderTransformOrigin="1.182,0.828" DropDownClosed="MachineCell_Drop_DropDownClosed" MouseEnter="MachineCell_Drop_MouseEnter" Text="Default" TabIndex="1" SelectedIndex="0">
+                        <ListBoxItem Content="Default"/>
+                    </ComboBox>
+                    <Label Content="Machine Cell:" HorizontalAlignment="Left" Height="29" Margin="7,12,0,0" VerticalAlignment="Top" Width="86"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Add to Database">
+                <Grid Background="White" Height="497" VerticalAlignment="Top" Margin="0,0,0,-67">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="87*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="DatabaseTag" Content="Tag Holes" HorizontalAlignment="Left" Height="25" Margin="170,51,0,0" VerticalAlignment="Top" Width="81" Click="DatabaseTag_Click" TabIndex="20" Grid.Column="1"/>
+                    <ComboBox x:Name="UnrecognizedHolesCombo" HorizontalAlignment="Left" Height="21" Margin="104,111,0,0" VerticalAlignment="Top" Width="147" DropDownClosed="UnrecognizedHolesCombo_DropDownClosed" TabIndex="30" Grid.Column="1"/>
+                    <Label Content="Unrecognized Holes:" HorizontalAlignment="Left" Height="29" Margin="10,108,0,0" VerticalAlignment="Top" Width="128" Grid.ColumnSpan="2"/>
+                    <Label Content="Step 1: Tag Holes:" HorizontalAlignment="Left" Height="29" Margin="9,16,0,0" VerticalAlignment="Top" Width="107" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="NCProgramListDB" HorizontalAlignment="Left" Height="21" Margin="97,20,0,0" VerticalAlignment="Top" Width="154" TabIndex="10" Grid.Column="1"/>
+                    <Label Content="Step 2: Select an unrecognized hole to add:" HorizontalAlignment="Left" Height="27" Margin="9,81,0,0" VerticalAlignment="Top" Width="245" Grid.ColumnSpan="2"/>
+                    <Label Content="Step 3: Adjust diameters and depth range" HorizontalAlignment="Left" Height="30" Margin="10,142,0,0" VerticalAlignment="Top" Width="262" Grid.ColumnSpan="2"/>
+                    <Label Content="Hole Component:" HorizontalAlignment="Left" Height="25" Margin="10,260,0,0" VerticalAlignment="Top" Width="106" Grid.ColumnSpan="2"/>
+                    <ComboBox x:Name="HoleComponentCombo" HorizontalAlignment="Left" Height="21" Margin="104,264,0,0" VerticalAlignment="Top" Width="147" DropDownClosed="HoleComponentCombo_DropDownClosed" PreviewKeyDown="HoleComponentCombo_PreviewKeyDown" SelectionChanged="HoleComponentCombo_SelectionChanged" TabIndex="70" Grid.Column="1"/>
+                    <Label Content="Upper Diameter:" HorizontalAlignment="Left" Height="27" Margin="10,290,0,0" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <Label Content="Lower Diameter:" HorizontalAlignment="Left" Height="27" Margin="9,317,0,0" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <Label Content="Min. Depth:" HorizontalAlignment="Left" Height="27" Margin="10,373,0,0" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <Label Content="Max. Depth:" HorizontalAlignment="Left" Height="27" Margin="10,400,0,0" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="UpperDiameterADD" HorizontalAlignment="Left" Height="19" Margin="104,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" TabIndex="80" Grid.Column="1"/>
+                    <TextBox x:Name="LowerDiameterADD" HorizontalAlignment="Left" Height="19" Margin="104,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" TabIndex="90" Grid.Column="1"/>
+                    <TextBox x:Name="MinDepthADD" HorizontalAlignment="Left" Height="19" Margin="104,378,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Text="0" TabIndex="110" Grid.Column="1"/>
+                    <TextBox x:Name="MaxDepthADD" HorizontalAlignment="Left" Height="19" Margin="104,409,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Text="0" TabIndex="120" Grid.Column="1"/>
+                    <Button x:Name="AddToDatabase" Content="Add to database" HorizontalAlignment="Left" Height="25" Margin="152,468,0,0" VerticalAlignment="Top" Width="100" Click="AddToDatabase_Click" TabIndex="173" Grid.Column="1"/>
+                    <Label Content="Hole Depth:" HorizontalAlignment="Left" Height="27" Margin="10,345,0,0" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="HoleDepthADD" HorizontalAlignment="Left" Height="19" Margin="104,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" IsEnabled="False" TabIndex="100" Grid.Column="1"/>
+                    <Label Content="Tag:" HorizontalAlignment="Left" Height="27" Margin="10,199,0,0" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <Label Content="Description:" HorizontalAlignment="Left" Height="27" Margin="9,226,0,0" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="HoleTagADD" HorizontalAlignment="Left" Height="19" Margin="56,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" TabIndex="50" Grid.Column="1" LostFocus="HoleTagADD_LostFocus"/>
+                    <TextBox x:Name="HoleDescriptionADD" HorizontalAlignment="Left" Height="19" Margin="56,230,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" TabIndex="60" Grid.Column="1"/>
+                    <Label Content="Family:" HorizontalAlignment="Left" Height="27" Margin="10,171,0,0" VerticalAlignment="Top" Width="99" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="HoleFamilyADD" HorizontalAlignment="Left" Height="19" Margin="56,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" TabIndex="40" Grid.Column="1"/>
+                    <TextBox x:Name="G_Color" HorizontalAlignment="Left" Height="22" Margin="160,438,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" IsEnabled="False" TabIndex="150" Grid.Column="1"/>
+                    <TextBox x:Name="B_Color" HorizontalAlignment="Left" Height="22" Margin="208,438,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" IsEnabled="False" TabIndex="160" Grid.Column="1"/>
+                    <TextBox x:Name="R_Color" HorizontalAlignment="Left" Height="22" Margin="110,438,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" IsEnabled="False" TabIndex="140" Grid.Column="1"/>
+                    <Label x:Name="RGB_Field" Content="RGB" HorizontalAlignment="Left" Height="25" Margin="74,436,0,0" VerticalAlignment="Top" Width="32" IsEnabled="False" Grid.Column="1"/>
+                    <CheckBox x:Name="UseColors" Content="Use Colors" HorizontalAlignment="Left" Height="17" Margin="10,441,0,0" VerticalAlignment="Top" Width="84" Checked="UseColors_Checked" Unchecked="UseColors_Unchecked" TabIndex="130" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="DelModify" Header="Delete/Modify" MouseLeftButtonUp="DelModify_MouseLeftButtonUp">
+                <Grid Background="White" Height="469" VerticalAlignment="Top" Margin="0,0,0,-67">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="149*"/>
+                        <ColumnDefinition Width="18*"/>
+                        <ColumnDefinition Width="133*"/>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="HoleFamilies" HorizontalAlignment="Left" Height="21" Margin="110,10,0,0" VerticalAlignment="Top" Width="179" Grid.ColumnSpan="3" DropDownClosed="HoleFamilies_DropDownClosed" TabIndex="10"/>
+                    <Label Content="Hole Families:" HorizontalAlignment="Left" Height="29" Margin="9,8,0,0" VerticalAlignment="Top" Width="96"/>
+                    <Label Content="Hole Component:" HorizontalAlignment="Left" Height="25" Margin="10,160,0,0" VerticalAlignment="Top" Width="106"/>
+                    <ComboBox x:Name="HoleComponentComboMod" HorizontalAlignment="Left" Height="21" Margin="143,164,0,0" VerticalAlignment="Top" Width="147" DropDownClosed="HoleComponentComboMod_DropDownClosed" Grid.ColumnSpan="3" TabIndex="60" SelectionChanged="HoleComponentComboMod_SelectionChanged"/>
+                    <Label Content="Upper Diameter:" HorizontalAlignment="Left" Height="27" Margin="10,190,0,0" VerticalAlignment="Top" Width="99"/>
+                    <Label Content="Lower Diameter:" HorizontalAlignment="Left" Height="27" Margin="9,217,0,0" VerticalAlignment="Top" Width="99"/>
+                    <Label Content="Min. Depth:" HorizontalAlignment="Left" Height="27" Margin="10,273,0,0" VerticalAlignment="Top" Width="99"/>
+                    <Label Content="Max. Depth:" HorizontalAlignment="Left" Height="27" Margin="10,300,0,0" VerticalAlignment="Top" Width="99"/>
+                    <TextBox x:Name="UpperDiameterMOD" HorizontalAlignment="Left" Height="19" Margin="143,194,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.ColumnSpan="3" TabIndex="70"/>
+                    <TextBox x:Name="LowerDiameterMOD" HorizontalAlignment="Left" Height="19" Margin="143,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.ColumnSpan="3" TabIndex="80"/>
+                    <TextBox x:Name="MinDepthMOD" HorizontalAlignment="Left" Height="19" Margin="143,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Text="0" Grid.ColumnSpan="3" TabIndex="100"/>
+                    <TextBox x:Name="MaxDepthMOD" HorizontalAlignment="Left" Height="19" Margin="143,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Text="0" Grid.ColumnSpan="3" TabIndex="110"/>
+                    <Button x:Name="ModifyInDatabase" Content="Modify" HorizontalAlignment="Left" Height="25" Margin="24,374,0,0" VerticalAlignment="Top" Width="100" Click="ModifyInDatabase_Click" Grid.Column="2" TabIndex="170"/>
+                    <Label Content="Hole Depth:" HorizontalAlignment="Left" Height="27" Margin="10,245,0,0" VerticalAlignment="Top" Width="99"/>
+                    <TextBox x:Name="HoleDepthMOD" HorizontalAlignment="Left" Height="19" Margin="143,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" IsEnabled="False" Grid.ColumnSpan="3" TabIndex="90"/>
+                    <Label Content="Tag:" HorizontalAlignment="Left" Height="27" Margin="10,99,0,0" VerticalAlignment="Top" Width="80"/>
+                    <Label Content="Description:" HorizontalAlignment="Left" Height="27" Margin="9,126,0,0" VerticalAlignment="Top" Width="81"/>
+                    <TextBox x:Name="HoleTagMOD" HorizontalAlignment="Left" Height="19" Margin="95,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Grid.ColumnSpan="3" TabIndex="40" LostFocus="HoleTagMOD_LostFocus"/>
+                    <TextBox x:Name="HoleDescriptionMOD" HorizontalAlignment="Left" Height="19" Margin="95,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Grid.ColumnSpan="3" TabIndex="50"/>
+                    <ComboBox x:Name="HoleTypes" HorizontalAlignment="Left" Height="21" Margin="111,42,0,0" VerticalAlignment="Top" Width="179" Grid.ColumnSpan="3" DropDownClosed="HoleTypes_DropDownClosed" TabIndex="20"/>
+                    <Label Content="Hole Types:" HorizontalAlignment="Left" Height="29" Margin="9,37,0,0" VerticalAlignment="Top" Width="96"/>
+                    <Button x:Name="DeleteFromDatabase" Content="Delete" HorizontalAlignment="Left" Height="25" Margin="86,374,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="3" Click="DeleteFromDatabase_Click" TabIndex="160"/>
+                    <Label Content="Family:" HorizontalAlignment="Left" Height="27" Margin="10,67,0,0" VerticalAlignment="Top" Width="80"/>
+                    <TextBox x:Name="HoleFamilyMOD" HorizontalAlignment="Left" Height="19" Margin="95,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Grid.ColumnSpan="3" TabIndex="30"/>
+                    <TextBox x:Name="G_Color_MOD" HorizontalAlignment="Left" Height="22" Margin="32,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" IsEnabled="False" TabIndex="140" Grid.Column="2"/>
+                    <TextBox x:Name="B_Color_MOD" HorizontalAlignment="Left" Height="22" Margin="80,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" IsEnabled="False" TabIndex="150" Grid.Column="2"/>
+                    <TextBox x:Name="R_Color_MOD" HorizontalAlignment="Left" Height="22" Margin="0,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="43" IsEnabled="False" TabIndex="130" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <Label x:Name="RGB_Field_MOD" Content="RGB" HorizontalAlignment="Left" Height="25" Margin="113,338,0,0" VerticalAlignment="Top" Width="32" IsEnabled="False"/>
+                    <CheckBox x:Name="UseColors_MOD" Content="Use Colors" HorizontalAlignment="Left" Height="17" Margin="10,343,0,0" VerticalAlignment="Top" Width="84" Unchecked="UseColors_MOD_Unchecked" TabIndex="120" Checked="UseColors_MOD_Checked"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</UserControl>
