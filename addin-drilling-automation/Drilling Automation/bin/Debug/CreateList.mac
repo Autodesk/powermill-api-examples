@@ -1,3 +1,6 @@
+// Creates a list of each hole found in the current featureset and saves 
+// their names to a text file. This is executed before toolpaths are imported.
+
 STRING $path = project_pathname(0)
 $path = $path + "\HoleNames.txt"
 FILE OPEN $path FOR WRITE AS outputfile

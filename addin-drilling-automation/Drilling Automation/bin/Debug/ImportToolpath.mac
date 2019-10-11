@@ -1,1 +1,2 @@
-//Add your custom code to apply to each toolpath before they get calculated
+// Add your custom code to apply to each toolpath before it is calculated.
+// Called just after the toolpath is imported.

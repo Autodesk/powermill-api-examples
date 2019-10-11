@@ -1,3 +1,6 @@
+// Called just after a drilling method is imported but before it's calculated.
+// Additional customization can be added here.
+
 EDIT TOOLPATH SAFEAREA TYPE PLANE
 EDIT TOOLPATH SAFEAREA WORKPLANE TOOLPATH_WORKPLANE
 EDIT TOOLPATH SAFEAREA MEASURE_FROM BLOCK_AND_MODEL
