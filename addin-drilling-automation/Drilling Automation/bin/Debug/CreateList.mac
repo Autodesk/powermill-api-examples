@@ -1,0 +1,7 @@
+STRING $path = project_pathname(0)
+$path = $path + "\HoleNames.txt"
+FILE OPEN $path FOR WRITE AS outputfile
+FOREACH $feature IN components($entity('featureset','')) {
+    FILE WRITE $feature.name TO outputfile
+}
+FILE CLOSE outputfile

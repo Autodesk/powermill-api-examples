@@ -1,0 +1,7 @@
+int $Counter = 1
+string $Name = ""
+FOREACH $feature IN components($entity('featureset','')) {
+    $Name = "T" +$feature.name
+    EDIT FEATURESET ; RENAME ${$Name+""} ${$Counter+""}
+    $Counter = $Counter + 1
+}
