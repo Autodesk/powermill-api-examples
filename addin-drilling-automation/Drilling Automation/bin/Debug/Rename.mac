@@ -1,0 +1,13 @@
+// Rename every hole of a featureset to a known name before tagging them. 
+// The holes of a featureset must have known names for the plugin to be
+// able to interact with them. 
+//
+// This macro should not be used for customization as editing it may break
+// the plugin.
+
+int $Counter = 1
+$Counter = 1
+FOREACH $feature IN components($entity('featureset','')) {
+    EDIT FEATURESET ; RENAME $feature.name ${"T" + $Counter}
+    $Counter = $Counter + 1
+}

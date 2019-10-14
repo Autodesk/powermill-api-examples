@@ -1,0 +1,18 @@
+// Called just after a drilling method is imported but before it's calculated.
+// Additional customization can be added here.
+
+EDIT TOOLPATH SAFEAREA TYPE PLANE
+EDIT TOOLPATH SAFEAREA WORKPLANE TOOLPATH_WORKPLANE
+EDIT TOOLPATH SAFEAREA MEASURE_FROM BLOCK_AND_MODEL
+EDIT PAR 'Rapid.CalculateDimensions.RapidClearance'  "0.6"
+EDIT PAR 'Rapid.CalculateDimensions.PlungeClearance'  "0.1"
+EDIT TOOLPATH SAFEAREA CALCULATE_DIMENSIONS
+EDIT PAR 'Connections.Link[0].Type' 'safe'
+EDIT PAR 'Connections.Link[1].Type' 'safe'
+EDIT PAR 'Connections.DefaultLink[0].Type' 'safe'
+PROCESS TPLEADS
+LEADS ACCEPT
+		
+EDIT METHOD APPLY
+METHOD CANCEL
+TEXTINFO ACCEPT
