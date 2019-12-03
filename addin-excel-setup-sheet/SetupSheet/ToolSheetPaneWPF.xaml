@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="SetupSheet.ToolSheetPaneWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SetupSheet"
+             mc:Ignorable="d" Height="421.379" Width="324.103"
+             Background="White">
+    <Grid Margin="10,10,10,0" Height="401" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="155*"/>
+            <RowDefinition Height="139*"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="109" Margin="5,44,0,0" Grid.Row="1" VerticalAlignment="Top" Width="289">
+            <ComboBox x:Name="Picture_List" HorizontalAlignment="Left" Height="21" Margin="9,52,0,0" VerticalAlignment="Top" Width="133" DropDownClosed="Picture_List_DropDownClosed" KeyUp="Picture_List_KeyUp"/>
+        </Border>
+
+        <ListBox x:Name="listNCProgs" Height="185" Margin="10,37,0,0" VerticalAlignment="Top" SelectionMode="Extended" HorizontalAlignment="Left" Width="124" Grid.RowSpan="2"/>
+        <Label Content="Select NCPrograms to export:" HorizontalAlignment="Center" Height="33" Margin="44,3,44,0" VerticalAlignment="Top" Width="216" HorizontalContentAlignment="Center"/>
+        <ListBox x:Name="listNCProgsSelected" Height="185" Margin="0,37,10,0" VerticalAlignment="Top" SelectionMode="Extended" HorizontalAlignment="Right" Width="126" Grid.RowSpan="2"/>
+        <Button x:Name="AddNCProg" Content="" Margin="138,102,142,0" VerticalAlignment="Top" Click="AddNCProg_Click" HorizontalAlignment="Center" Width="24" Height="24">
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Foreground>
+                <ImageBrush ImageSource="Icons/Add_32x32.ico"/>
+            </Button.Foreground>
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/Add_32x32.ico"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="RemoveNCProg" Content="" Margin="138,131,142,0" VerticalAlignment="Top" Click="RemoveNCProg_Click" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Width="24" Height="24">
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/Del_32x32.ico"/>
+            </Button.Background>
+            <Button.BorderBrush>
+                <ImageBrush/>
+            </Button.BorderBrush>
+            <Button.Foreground>
+                <ImageBrush ImageSource="Icons/Del_32x32.ico"/>
+            </Button.Foreground>
+        </Button>
+        <Button x:Name="Generate" Content="Generate" HorizontalAlignment="Left" Height="22" Margin="223,161,0,0" VerticalAlignment="Top" Width="71" Click="Generate_Click" Grid.Row="1"/>
+        <Image x:Name="Setup_Picture" HorizontalAlignment="Left" Height="72" Margin="158,74,0,0" Grid.Row="1" VerticalAlignment="Top" Width="127"/>
+        <Button x:Name="Del_Picture" Content="" HorizontalAlignment="Left" Height="21" Margin="74,129,0,0" Grid.Row="1" VerticalAlignment="Top" Width="22" Click="Del_Picture_Click" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/Del_32x32.ico"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Get_Picture" Content="" HorizontalAlignment="Left" Height="20" Margin="108,129,0,0" Grid.Row="1" VerticalAlignment="Top" Width="26" Click="Get_Picture_Click" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Icons/Add_32x32.ico"/>
+            </Button.Background>
+        </Button>
+        <Label Content="Pictures" HorizontalAlignment="Left" Height="26" Margin="7,13,0,0" VerticalAlignment="Top" Width="80" Grid.Row="1"/>
+        <RadioButton x:Name="Toolpath_Pics" Content="Toolpath" HorizontalAlignment="Left" Height="20" Margin="14,71,0,0" VerticalAlignment="Top" Width="73" Checked="Detailed_Checked" Grid.Row="1"/>
+        <RadioButton x:Name="NCProg_Pics" Content="NCProg" HorizontalAlignment="Left" Height="16" Margin="89,50,0,0" VerticalAlignment="Top" Width="65" IsChecked="True" Checked="Summary_Checked" Grid.Row="1"/>
+        <RadioButton x:Name="Project_Pics" Content="Project" HorizontalAlignment="Left" Height="20" Margin="14,51,0,0" VerticalAlignment="Top" Width="73" Grid.Row="1" Checked="Project_Pics_Checked"/>
+
+    </Grid>
+</UserControl>
