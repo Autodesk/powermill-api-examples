@@ -14,6 +14,7 @@ Imports System.Text
 Imports System.Threading.Tasks
 Imports Delcam.Plugins.Framework
 
+'TODO: "Change this Guid to be something unique";
 <Guid("0D229F75-EA25-4B51-8EA5-991232FFCCE6")>
 <ClassInterface(ClassInterfaceType.None)>
 <ComVisible(true)>
@@ -28,6 +29,7 @@ Public Class ExamplePowerMillPlugin
 
     Public Overrides ReadOnly Property PluginGuid As Guid
         Get
+'TODO: "Change this Guid to match the one above that you uniquely generated";
             Return New Guid("0D229F75-EA25-4B51-8EA5-991232FFCCE6")
         End Get
     End Property

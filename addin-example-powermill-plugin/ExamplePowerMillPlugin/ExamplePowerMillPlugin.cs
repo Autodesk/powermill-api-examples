@@ -16,12 +16,14 @@ using Delcam.Plugins.Framework;
 
 namespace ExamplePowerMillPlugin
 {
+//TODO: "Change this Guid to be something unique";
     [Guid("0D229F75-EA25-4B51-8EA5-991232FFCCE6")]
     [ClassInterface(ClassInterfaceType.None)]
     [ComVisible(true)]
     public class ExamplePowerMillPlugin : PluginFrameworkWithPanesAndTabs
     {
         public override string PluginAssemblyName => "ExamplePowerMillPlugin";
+//TODO: "Change this Guid to match the one above that you uniquely generated";
         public override Guid PluginGuid => new Guid("0D229F75-EA25-4B51-8EA5-991232FFCCE6");
         public override string PluginName => "ExamplePowerMillPlugin";
         public override string PluginAuthor => "Your name here";

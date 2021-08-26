@@ -22,6 +22,12 @@
         "Entry"
         {
         "MsmKey" = "8:_033CFC902F6DE8EF78B4315359F0C731"
+        "OwnerKey" = "8:_E8950A83295F462F8E8DFBE9FE765985"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_033CFC902F6DE8EF78B4315359F0C731"
         "OwnerKey" = "8:_58B217549D16498A8D696E93E35FA8CA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,26 +45,26 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E9728FF7A0B520BBE708E36A78BBADB7"
-        "OwnerKey" = "8:_3A9DFF426FFF42D5ACF41D152C5FF6D9"
+        "MsmKey" = "8:_E8950A83295F462F8E8DFBE9FE765985"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3A9DFF426FFF42D5ACF41D152C5FF6D9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E8950A83295F462F8E8DFBE9FE765985"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_58B217549D16498A8D696E93E35FA8CA"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E9728FF7A0B520BBE708E36A78BBADB7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -190,37 +196,6 @@
                     }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_D076D03C9A84447DA8294096DE9FCBD3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E9728FF7A0B520BBE708E36A78BBADB7"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:PluginFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bdc4cadb4757aa62, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_E9728FF7A0B520BBE708E36A78BBADB7"
-                    {
-                    "Name" = "8:PluginFramework.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:PluginFramework.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D076D03C9A84447DA8294096DE9FCBD3"
@@ -865,6 +840,34 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{C34E7331-0E7E-4E5B-8221-A2709F2025D1}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E8950A83295F462F8E8DFBE9FE765985"
+            {
+            "SourcePath" = "8:..\\ExamplePowerMillPluginVB\\obj\\Release\\ExamplePowerMillPluginVB.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D076D03C9A84447DA8294096DE9FCBD3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:1"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{CF882E8C-C895-4004-9BB5-22B1915BAA15}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

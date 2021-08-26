@@ -78,6 +78,7 @@ namespace VaultForPowerMillInstall
         private static void RegisterCOMCategory(bool register)
         {
             // Build the registry key we wish to add
+//TODO: Change this Guid to match your plugin Guid
             string pluginGuid = "{0D229F75-EA25-4B51-8EA5-991232FFCCE6}";
             string pluginComponentCategory = "{311B0135-1826-4A8C-98DE-F313289F815E}";
             string regKey = "HKCR\\CLSID\\" + pluginGuid + "\\Implemented Categories\\" + pluginComponentCategory;
